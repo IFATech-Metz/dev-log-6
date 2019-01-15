@@ -24,7 +24,12 @@ function init_page() {
             var response = JSON.parse(this.responseText);
             var temperature = response.main.temp;
 
+            var icon = response.weather.icon;
+
+            var src = "http://openweathermap.org/img/w/" + icon + ".png";
+
             document.getElementById("meteo").innerHTML = temperature;
+            document.getElementById("icon").src = src;
         }
     };
     
