@@ -7,11 +7,33 @@
     <body onload="init_page()">
         <h1>Application M&eacute;t&eacute;o</h1>
         <p>
-            Nom de la ville :
+            Entrer le nom d'une ville :
             <input type="text" id="ville" value=""/><br>
             <button type="button" onclick="get_temperature()">Envoyer</button>
             <input type="checkbox" id="url_visibility"/>
         </p>
+        <p>
+            Informations sur : 
+        </p>
+        <p>
+            Tempéraure <br><input type="checkbox" id="temperature"/>
+            Pression<br><input type="checkbox" id="pression"/>
+            Humidité <br><input type="checkbox" id="humidite"/>
+            Vitesse du vent <br><input type="checkbox" id="vitesse_vent"/>
+       </p>
+       <p>
+            Prévision sur : 
+        </p>
+        <p>
+            1 jour <br><input type="checkbox" id="1_j"/>
+            2 jours <br><input type="checkbox" id="2_j"/>
+            3 jours <br><input type="checkbox" id="3_j"/>
+            4 jours <br><input type="checkbox" id="4_j"/>
+            5 jours <br><input type="checkbox" id="5_j"/>
+       </p>
+       <p>
+            <button id="b" type="button" onclick="get_temperature()">Lancer</button>
+       </p>
         <div id="url">
 
         </div>
