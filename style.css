@@ -4,7 +4,9 @@
 }
 #b {
     color: red;
+    display: block;
     margin : auto;
+    background-color: white;
 }
 
 #meteo {
