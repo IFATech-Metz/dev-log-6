@@ -1,11 +1,29 @@
-#url
-{
-    color :red;
-    display: none;
+#url {
+    color: red;
+    display:none;
 }
 
-#meteo
-{
-    color:white;
+#meteo1 {
+    color: white;
     background-color: black;
+}
+
+#meteo2{
+    color: white;
+    background-color: #303030;
+}
+
+#meteo3{
+    color: white;
+    background-color: #bb0b0b;
+}
+
+#meteo4{
+    color: white;
+    background-color: #e1ce9a;
+}
+
+#meteo5{
+    color: white;
+    background-color: #0a7f72;
 }
