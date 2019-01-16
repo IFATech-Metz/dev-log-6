@@ -19,20 +19,68 @@ function get_url() {
         + "appid=" + appid;
 }
 
+
 function init_page() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
 
+<<<<<<< HEAD
             var icon = response.weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
 
+=======
+            var response = JSON.parse(this.responseText);
+            var temperature = Math.round(response.list[0].main.temp);
+
+            var icon = response.list[0].weather[0].icon;
+
+            var src = "http://openweathermap.org/img/w/" + icon + ".png";
+
+            document.getElementById("meteo1").innerHTML = temperature;
+            temperature = Math.round(response.list[1].main.temp);
+
+            document.getElementById("icon1").src = src;
+            icon = response.list[1].weather[0].icon;
+
+            document.getElementById("meteo2").innerHTML = temperature;
+            temperature = Math.round(response.list[2].main.temp);
+
+            document.getElementById("icon2").src = src;
+            icon = response.list[2].weather[0].icon;
+
+            document.getElementById("meteo3").innerHTML = temperature;
+            temperature = Math.round(response.list[3].main.temp);
+
+            document.getElementById("icon3").src = src;
+            icon = response.list[3].weather[0].icon;
+
+            document.getElementById("meteo4").innerHTML = temperature;
+            temperature = Math.round(response.list[4].main.temp);
+
+            document.getElementById("icon4").src = src;
+            icon = response.list[4].weather[0].icon;
+
+            document.getElementById("meteo5").innerHTML = temperature;
+            temperature = Math.round(response.list[5].main.temp);
+
+            document.getElementById("icon5").src = src;
+            icon = response.list[5].weather[0].icon;
+
+>>>>>>> a0edafbc535b0689b3834bab38ff2c58f766884f
         }
     };
     
     xhr.open("GET", get_url(), true);
     xhr.send();
 }
+
+function handleKeyPress(e)
+{
+    var key = e.key;
+    if(key === "Enter") get_temperature();
+}
+
 
 function get_temperature() {
     city = document.getElementById("ville").value;
@@ -47,10 +95,41 @@ function get_temperature() {
                 document.getElementById("url").style.display = "none";
             }
 
+<<<<<<< HEAD
             var icon = response.weather[0].icon;
+=======
+            var response = JSON.parse(this.responseText);
+            var temperature = Math.round(response.list[0].main.temp);
+            var icon = response.list[0].weather[0].icon;
+>>>>>>> a0edafbc535b0689b3834bab38ff2c58f766884f
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
-            document.getElementById("icon").src = src;
-            document.getElementById("meteo").innerHTML = temperature;
+            document.getElementById("icon1").src = src;
+            document.getElementById("meteo1").innerHTML = temperature;
+
+            temperature = Math.round(response.list[1].main.temp);
+            icon = response.list[1].weather[0].icon;
+            src = "http://openweathermap.org/img/w/" + icon + ".png";
+            document.getElementById("icon2").src = src;
+            document.getElementById("meteo2").innerHTML = temperature;
+
+            temperature = Math.round(response.list[2].main.temp);
+            icon = response.list[2].weather[0].icon;
+            src = "http://openweathermap.org/img/w/" + icon + ".png";
+            document.getElementById("icon3").src = src;
+            document.getElementById("meteo3").innerHTML = temperature;
+
+            temperature = Math.round(response.list[3].main.temp);
+            icon = response.list[3].weather[0].icon;
+            src = "http://openweathermap.org/img/w/" + icon + ".png";
+            document.getElementById("icon4").src = src;
+            document.getElementById("meteo4").innerHTML = temperature;
+
+            temperature = Math.round(response.list[4].main.temp);
+            icon = response.list[4].weather[0].icon;
+            src = "http://openweathermap.org/img/w/" + icon + ".png";
+            document.getElementById("icon5").src = src;
+            document.getElementById("meteo5").innerHTML = temperature;
+
         }
     };
 

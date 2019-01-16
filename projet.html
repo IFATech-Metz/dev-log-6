@@ -8,8 +8,9 @@
     <body onload="init_page()">
         <h1>Appli Météo</h1>
         <p>
-            Entrer le nom d'une ville :
-            <input type="text" id="ville" value=""/><br>
+            Nom de la ville :
+            <input type="text" id="ville" value="" onkeypress="handleKeyPress(event)"/><br>
+            <input type="checkbox" id="url_visibility"/>
         </p>
         <p>
             Informations sur : 
@@ -36,12 +37,12 @@
         <div id="url">
 
         </div>
-        <div id="meteo">
+        <div id="meteo1">
 
         </div>
         
         
-        <img id="icon" src="">
+        <img id="icon1" src="">
 
         <div id="meteo2"></div>
         <img id="icon2" src="">
