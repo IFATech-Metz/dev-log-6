@@ -33,7 +33,7 @@ function init_page() {
             for (pas = 1; pas < 6; pas++) {
                 temperature=Math.round(response.list[pas-1].main.temp);
                 document.getElementById("meteo" + pas).innerHTML = temperature;
-                temperature = Math.round(response.list[pas].main.temp);
+                //temperature = Math.round(response.list[pas].main.temp);
             }
             /*
             document.getElementById("meteo1").innerHTML = temperature;
@@ -94,35 +94,42 @@ function get_temperature() {
             }
 
             var response = JSON.parse(this.responseText);
-            var temperature = Math.round(response.list[0].main.temp);
+            //var temperature = Math.round(response.list[0].main.temp);
+            var temperature;
             var icon = response.list[0].weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
-            document.getElementById("icon1").src = src;
-            document.getElementById("meteo1").innerHTML = temperature;
 
-            temperature = Math.round(response.list[1].main.temp);
+            var pas;
+            for (pas = 1;pas < 6; pas++){
+                temperature=Math.round(response.list[pas-1].main.temp);
+                document.getElementById("meteo" + pas).innerHTML = temperature;
+            }
+            document.getElementById("icon1").src = src;
+            /*document.getElementById("meteo1").innerHTML = temperature;
+
+            temperature = Math.round(response.list[1].main.temp);*/
             icon = response.list[1].weather[0].icon;
             src = "http://openweathermap.org/img/w/" + icon + ".png";
             document.getElementById("icon2").src = src;
-            document.getElementById("meteo2").innerHTML = temperature;
+            /*document.getElementById("meteo2").innerHTML = temperature;
 
-            temperature = Math.round(response.list[2].main.temp);
+            temperature = Math.round(response.list[2].main.temp);*/
             icon = response.list[2].weather[0].icon;
             src = "http://openweathermap.org/img/w/" + icon + ".png";
             document.getElementById("icon3").src = src;
-            document.getElementById("meteo3").innerHTML = temperature;
+            /*document.getElementById("meteo3").innerHTML = temperature;
 
-            temperature = Math.round(response.list[3].main.temp);
+            temperature = Math.round(response.list[3].main.temp);*/
             icon = response.list[3].weather[0].icon;
             src = "http://openweathermap.org/img/w/" + icon + ".png";
             document.getElementById("icon4").src = src;
-            document.getElementById("meteo4").innerHTML = temperature;
+            /*document.getElementById("meteo4").innerHTML = temperature;
 
-            temperature = Math.round(response.list[4].main.temp);
+            temperature = Math.round(response.list[4].main.temp);*/
             icon = response.list[4].weather[0].icon;
             src = "http://openweathermap.org/img/w/" + icon + ".png";
             document.getElementById("icon5").src = src;
-            document.getElementById("meteo5").innerHTML = temperature;
+            //document.getElementById("meteo5").innerHTML = temperature;
 
         }
     };
