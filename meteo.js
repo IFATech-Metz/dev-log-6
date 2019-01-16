@@ -4,7 +4,7 @@ var xhr = new XMLHttpRequest();
 // http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?
 // date=1527811200&opacity=0.9&fill_bound=true&appid={api_key}
 
-var base_url = "http://api.openweathermap.org/data/2.5/weather";
+var base_url = "http://api.openweathermap.org/data/2.5/forecast";
 var city = "Metz";
 var appid = "f5e810531af1756846022c6f387acf25";
 var units = "metric";
@@ -22,9 +22,9 @@ function init_page() {
             document.getElementById("url").innerHTML = get_url();
 
             var response = JSON.parse(this.responseText);
-            var temperature = response.main.temp;
+            var temperature = response.list[0].main.temp;
 
-            var icon = response.weather[0].icon;
+            var icon = response.list[0].weather[0].icon;
 
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
 
@@ -51,8 +51,8 @@ function get_temperature() {
             }
 
             var response = JSON.parse(this.responseText);
-            var temperature = response.main.temp;
-            var icon = response.weather[0].icon;
+            var temperature = response.list[0].main.temp;
+            var icon = response.list[0].weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
             document.getElementById("icon").src = src;
             document.getElementById("meteo").innerHTML = temperature;
