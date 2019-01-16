@@ -16,6 +16,7 @@ function get_url() {
         + "appid=" + appid;
 }
 
+
 function init_page() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -28,10 +29,10 @@ function init_page() {
 
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
 
-            document.getElementById("meteo").innerHTML = temperature;
+            document.getElementById("meteo1").innerHTML = temperature;
             temperature = Math.round(response.list[1].main.temp);
 
-            document.getElementById("icon").src = src;
+            document.getElementById("icon1").src = src;
             icon = response.list[1].weather[0].icon;
 
             document.getElementById("meteo2").innerHTML = temperature;
@@ -82,8 +83,8 @@ function get_temperature() {
             var temperature = Math.round(response.list[0].main.temp);
             var icon = response.list[0].weather[0].icon;
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
-            document.getElementById("icon").src = src;
-            document.getElementById("meteo").innerHTML = temperature;
+            document.getElementById("icon1").src = src;
+            document.getElementById("meteo1").innerHTML = temperature;
 
             temperature = Math.round(response.list[1].main.temp);
             icon = response.list[1].weather[0].icon;
