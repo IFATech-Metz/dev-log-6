@@ -38,35 +38,41 @@ function init_page()
     xhr.send();
 }
 
-function get_temperature() 
+function handleKeyPress(e)
 {
-    city = document.getElementById("ville").value;
-    xhr.onreadystatechange = function() 
-    {
-        if (this.readyState == 4 && this.status == 200) 
-        {
-            document.getElementById("url").innerHTML = get_url();
-            var response = JSON.parse(this.responseText);
-            var temperature = response.main.temp;
-            var icon = response.weather[0].icon;
-            var src = "https://openweathermap.org/img/w/" + icon + ".png";
-            document.getElementById("meteo").innerHTML = temperature;
-            document.getElementById("icon").src = src;
+    var key = e.key;
+    if(key === "Enter") get_temperature();
+}
 
-            if(document.getElementById("url_visibility").checked)
+function get_temperature(e) 
+{
+        city = document.getElementById("ville").value;
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
             {
-                document.getElementById("url").style.display ="block";
-            }
-            else
-            {
-                document.getElementById("url").style.display = "none";
-            }
-            var response = JSON.parse(this.responseText);
-            var temperature = response.main.temp;
-            document.getElementById("meteo").innerHTML = temperature;
-        }
-    }
+                document.getElementById("url").innerHTML = get_url();
+                var response = JSON.parse(this.responseText);
+                var temperature = response.main.temp;
+                var icon = response.weather[0].icon;
+                var src = "https://openweathermap.org/img/w/" + icon + ".png";
+                document.getElementById("meteo").innerHTML = temperature;
+                document.getElementById("icon").src = src;
     
-    xhr.open("GET", get_url(), true);
-    xhr.send();
+                if(document.getElementById("url_visibility").checked)
+                {
+                    document.getElementById("url").style.display ="block";
+                }
+                else
+                {
+                    document.getElementById("url").style.display = "none";
+                }
+                var response = JSON.parse(this.responseText);
+                var temperature = response.main.temp;
+                document.getElementById("meteo").innerHTML = temperature;
+            }
+        }
+        
+        xhr.open("GET", get_url(), true);
+        xhr.send();
 }
