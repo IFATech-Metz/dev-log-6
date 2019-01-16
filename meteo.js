@@ -66,6 +66,13 @@ function init_page() {
     xhr.send();
 }
 
+function handleKeyPress(e)
+{
+    var key = e.key;
+    if(key === "Enter") get_temperature();
+}
+
+
 function get_temperature() {
     city = document.getElementById("ville").value;
     xhr.onreadystatechange = function() {
