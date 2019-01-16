@@ -2,6 +2,10 @@
     color: red;
     display:none;
 }
+#b {
+    color: red;
+    margin : auto;
+}
 
 #meteo {
     color: white;
