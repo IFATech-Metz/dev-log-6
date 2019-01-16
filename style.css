@@ -1,8 +1,17 @@
 #url {
     color: red;
+<<<<<<< HEAD
     display : none
 }
 #meteo {
     
     
+=======
+    display:none;
+}
+
+#meteo {
+    color: white;
+    background-color: black;
+>>>>>>> 880859cb0052986452c7d1fa9896c76e83d713ee
 }
