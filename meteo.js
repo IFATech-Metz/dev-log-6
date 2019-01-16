@@ -29,7 +29,35 @@ function init_page() {
             var src = "http://openweathermap.org/img/w/" + icon + ".png";
 
             document.getElementById("meteo").innerHTML = temperature;
+            temperature = response.list[1].main.temp;
+
             document.getElementById("icon").src = src;
+            icon = response.list[1].weather[0].icon;
+
+            document.getElementById("meteo2").innerHTML = temperature;
+            temperature = response.list[2].main.temp;
+
+            document.getElementById("icon2").src = src;
+            icon = response.list[2].weather[0].icon;
+
+            document.getElementById("meteo3").innerHTML = temperature;
+            temperature = response.list[3].main.temp;
+
+            document.getElementById("icon3").src = src;
+            icon = response.list[3].weather[0].icon;
+
+            document.getElementById("meteo4").innerHTML = temperature;
+            temperature = response.list[4].main.temp;
+
+            document.getElementById("icon4").src = src;
+            icon = response.list[4].weather[0].icon;
+
+            document.getElementById("meteo5").innerHTML = temperature;
+            temperature = response.list[5].main.temp;
+
+            document.getElementById("icon5").src = src;
+            icon = response.list[5].weather[0].icon;
+
         }
     };
     
