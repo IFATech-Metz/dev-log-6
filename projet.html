@@ -5,12 +5,14 @@
         <script src="meteo.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body onload="init_page()">
+    <body>
         <h1>Appli Météo</h1>
         <p>
             Nom de la ville :
             <input type="text" id="ville" value="" onkeypress="handleKeyPress(event)"/><br>
-            <button type="button" onclick="get_temperature()">Envoyer</button>
+            <!--<button type="button" onclick="get_temperature();get_pressure();">Envoyer</button>-->
+            <button type="button" onclick="getData(document.getElementById('ville').value)">
+            Météo sur 5 jours</button>
             <input type="checkbox" id="url_visibility"/>
         </p>
         <p>
@@ -42,17 +44,32 @@
         
         
         <img id="icon1" src="">
+        <div id="pressure1"></div>
+        <div id="humidite1"></div>
+        <div id="windspeed1"></div>
 
         <div id="meteo2"></div>
         <img id="icon2" src="">
+        <div id="pressure2"></div>
+        <div id="humidite2"></div>
+        <div id="windspeed2"></div>
 
         <div id="meteo3"></div>
         <img id="icon3" src="">
+        <div id="pressure3"></div>
+        <div id="humidite3"></div>
+        <div id="windspeed3"></div>
 
         <div id="meteo4"></div>
         <img id="icon4" src="">
+        <div id="pressure4"></div>
+        <div id="humidite4"></div>
+        <div id="windspeed4"></div>
 
         <div id="meteo5"></div>
         <img id="icon5" src="">
+        <div id="pressure5"></div>
+        <div id="humidite5"></div>
+        <div id="windspeed5"></div>
     </body>
 </html>
