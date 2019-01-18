@@ -1,18 +1,38 @@
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>Météo du jour</title>
         <script src="meteo.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body onload="init_page()">
-        <h1>Application M&eacute;t&eacute;o</h1>
+        <h1>Appli Météo</h1>
         <p>
             Nom de la ville :
             <input type="text" id="ville" value="" onkeypress="handleKeyPress(event)"/><br>
             <button type="button" onclick="get_temperature()">Envoyer</button>
             <input type="checkbox" id="url_visibility"/>
         </p>
+        <p>
+            Informations sur : 
+        </p>
+        <p>
+            Température <input type="checkbox" id="temperature"/> 
+            Pression <input type="checkbox" id="pression"/> 
+            Humidité <input type="checkbox" id="humidite"/> 
+            Vitesse du vent <input type="checkbox" id="vitesse_vent"/>
+       </p>
+       <p>
+            Prévision sur : 
+        </p>
+        <p>
+            1 jour <input type="checkbox" id="1_j"/> 
+            2 jours <input type="checkbox" id="2_j"/> 
+            3 jours <input type="checkbox" id="3_j"/> 
+            4 jours <input type="checkbox" id="4_j"/> 
+            5 jours <input type="checkbox" id="5_j"/>
+       </p>
+       
         <div id="url">
 
         </div>

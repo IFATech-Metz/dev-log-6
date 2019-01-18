@@ -2,6 +2,12 @@
     color: red;
     display:none;
 }
+#b {
+    color: red;
+    display: block;
+    margin : auto;
+    background-color: white;
+}
 
 #meteo1 {
     color: white;
