@@ -10,6 +10,7 @@
         <p>
             Nom de la ville :
             <input type="text" id="ville" value="" onkeypress="handleKeyPress(event)"/><br>
+            <button type="button" onclick="get_temperature()">Envoyer</button>
             <input type="checkbox" id="url_visibility"/>
         </p>
         <p>
@@ -31,9 +32,7 @@
             4 jours <input type="checkbox" id="4_j"/> 
             5 jours <input type="checkbox" id="5_j"/>
        </p>
-       <p>
-            <button id="b" type="button" onclick="get_temperature()">Lancer</button>
-       </p>
+       
         <div id="url">
 
         </div>
