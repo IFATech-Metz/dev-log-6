@@ -96,65 +96,9 @@ function get_val_default() {
 */
 
 
-<<<<<<< HEAD
-function handleKeyPress(e)
-{
-    var key = e.key;
-    if(key == "Enter"){
-        /*get_temperature();
-        get_pressure();*/
-        requete(ville);
-    }
-}  
-
-
-// handle key -> xhr
-// xhr ->  objet - > get temp
-// get temp -> get pression
-
-function requete(ville){
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            parsingData(this.responseText);
-        }
-        else parsingData(false);
-    }
-    xhr.open("GET", get_url(), true);
-    xhr.send();
-}
-
-function parsingData(dataJ){
-    let parsedJ = (dataJ ? JSON.parse(dataJ) : false);
-    if(parsedJ){
-        for(let i = 0; i < 5; i++){
-            let objetData = {
-                "pression": "",
-                "temperature": "",
-                "humidite": "",
-                "windspeed": "", 
-            };            
-            let n = i*8;
-            objetData.pression = parsedJ.list[n].main.pressure;
-            objetData.temperature = parsedJ.list[n].main.temp;
-            objetData.humidite = parsedJ.list[n].main.humidity;
-            objetData.windspeed = parsedJ.list[n].wind.speed;
-            forcastArray = [...forcastArray, objetData]
-        }
-    }
-    //console.log(forcastArray);
-}
-
-function getData(ville){
-    requete(ville);
-}
-
-/*function get_temperature() {
-    console.log("hello");
-=======
 /* ensemble des fonctions récupérant des valeurs supplémentaires : pression, humidité, vitesse du vent */
 
 function get_pressure() {
->>>>>>> 0be4ea1026fae8a8187c50ced2b260ff80ee7ff6
     city = document.getElementById("ville").value;
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -231,15 +175,6 @@ function get_windspeed() {
             }
         }
     }
-<<<<<<< HEAD
-    
-    xhr.open("GET", get_url(), true);
-    xhr.send();
-}
-*/
-
-/*function get_pressure() {
-=======
     xhr.open("GET", get_url(), true);
     xhr.send();
 }
@@ -247,42 +182,10 @@ function get_windspeed() {
 /* la fonction unique qui permet d'afficher les prévisions suivant le nombre de jour que l'on souhaite */
 
 function get_Njour() {
->>>>>>> 0be4ea1026fae8a8187c50ced2b260ff80ee7ff6
     city = document.getElementById("ville").value;
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
-<<<<<<< HEAD
-            
-            /*if(document.getElementById("url_visibility").checked){
-                document.getElementById("url").style.display = "block";
-            }
-            else{
-                document.getElementById("url").style.display = "none";
-            }*/
-            //if (document.getElementById("pression").checked){
-                //var response = JSON.parse(this.responseText);
-                //var pressure;
-                //var pas;
-                //for (pas = 1;pas < 6; pas++){
-                    //pressure=response.list[pas-1].main.pressure;
-                    //document.getElementById("pressure" + pas).innerHTML = pressure;
-                    //document.getElementById("pressure" + pas).style.display = block;
-                //}
-            //}
-            /*else{
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("pressure" + pas).style.display = "none";
-                }
-            }*/
-            
-        //}
-    //}
-
-    //xhr.open("GET", get_url(), true);
-    //xhr.send();
-//}
-=======
            
             if(document.RadioButton.Njour[0].checked){
                 document.getElementById("table_1jour").style.display = "block";
@@ -325,4 +228,3 @@ function get_Njour() {
     xhr.send();
 }
 
->>>>>>> 0be4ea1026fae8a8187c50ced2b260ff80ee7ff6
