@@ -22,6 +22,7 @@ function init_page() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();    
 
+            // Efface les tableaux à l'initiation de la page
             document.getElementById("table_1jour").style.display  = "none";
             document.getElementById("table_2jour").style.display  = "none";
             document.getElementById("table_3jour").style.display  = "none";
@@ -35,6 +36,7 @@ function init_page() {
     xhr.send();
 }
 
+// Permet de récupérer, par la touche entrée la fonction qui affiche les valeurs par défauts
 function handleKeyPress(event) {
     var key = event.key;
     if(key == "Enter")
@@ -50,9 +52,8 @@ function get_val_default() {
             var temperature;
             var icon;
             var src;
-            var pas; 
-            var jour=1;
 
+            // Par défaut 1er jour est coché, et seul le table_1_j est affiché
             document.forms["RadioButton"]["1jourRadio"].checked=true;
             document.getElementById("table_1jour").style.display = "block";
             document.getElementById("table_2jour").style.display  = "none";
@@ -60,31 +61,32 @@ function get_val_default() {
             document.getElementById("table_4jour").style.display  = "none";
             document.getElementById("table_5jour").style.display  = "none";
             
+            // Par défaut la pression, l'humidité et la vitesse du vent est décochée et les données effacées
             if(document.getElementById("PressureCheck").checked){
                 document.getElementById("PressureCheck").checked=false;}
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("pressure" + pas).innerHTML = "";
+                for (let i = 0;i < 5; i++){
+                    document.getElementById("pressure" + i).innerHTML = "";
                 }
             if(document.getElementById("HumidityCheck").checked){
                 document.getElementById("HumidityCheck").checked=false;}
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("humidity" + pas).innerHTML = "";
+                for (let i = 0;i < 5; i++){
+                    document.getElementById("humidity" + i).innerHTML = "";
                 }
             if(document.getElementById("WindSpeedCheck").checked){
                 document.getElementById("WindSpeedCheck").checked=false;}
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("windspeed" + pas).innerHTML = "";
+                for (let i = 0;i < 5; i++){
+                    document.getElementById("windspeed" + i).innerHTML = "";
                 }
-            
-            for (pas = 1;pas <= 41; pas = 8) {
-                temperature=Math.round(response.list[pas-1].main.temp);
-                document.getElementById("temperature" + jour).innerHTML = temperature;
-                icon = response.list[pas-1].weather[0].icon;
+            // Toutes les températures et les icones sont récupérées, mais seuls les premières sont affichées par défaut
+            for (let i = 0;i < 5;i++) {
+                temperature=Math.round(response.list[i*8].main.temp);
+                document.getElementById("temperature" + i).innerHTML = temperature;
+                icon = response.list[i*8].weather[0].icon;
                 src = "http://openweathermap.org/img/w/" + icon + ".png";
-                document.getElementById("icon" + jour).src = src;
-                jour++;
-
+                document.getElementById("icon" + i).src = src;
+                
             }
+            
         }
     }
     
@@ -105,14 +107,13 @@ function get_pressure() {
             var pressure;
 
             if (checkBox.checked == true){
-                var pas;
-                for (pas = 1;pas < 6; pas++){
-                    pressure=(response.list[pas-1].main.pressure);
-                    document.getElementById("pressure" + pas).innerHTML = pressure;
+                for (let i=0; i<5; i++){
+                    pressure=(response.list[i*8].main.pressure);
+                    document.getElementById("pressure" + i).innerHTML = pressure;
                 }
             } else {
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("pressure" + pas).innerHTML = "";
+                for (let i=0; i<5; i++){
+                    document.getElementById("pressure" + i).innerHTML = "";
                 }
             }
         }
@@ -130,16 +131,15 @@ function get_humidity() {
             var checkBox = document.getElementById("HumidityCheck");
             var response = JSON.parse(this.responseText);
             var humidity;
-            var pas;
 
             if (checkBox.checked == true){
-                for (pas = 1;pas < 6; pas++){
-                    humidity=(response.list[pas-1].main.humidity);
-                    document.getElementById("humidity" + pas).innerHTML = humidity;
+                for (let i=0; i<5; i++){
+                    humidity=(response.list[i*8].main.humidity);
+                    document.getElementById("humidity" + i).innerHTML = humidity;
                 }
             } else {
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("humidity" + pas).innerHTML = "";
+                for (let i=0; i<5; i++){
+                    document.getElementById("humidity" + i).innerHTML = "";
                 }
             }
         }
@@ -157,16 +157,15 @@ function get_windspeed() {
             var checkBox = document.getElementById("WindSpeedCheck");
             var response = JSON.parse(this.responseText);
             var windspeed;
-            var pas;
 
             if (checkBox.checked == true){
-                for (pas = 1;pas < 6; pas++){
-                    windspeed=(response.list[pas-1].wind.speed);
-                    document.getElementById("windspeed" + pas).innerHTML = windspeed;
+                for (let i=0; i<5; i++){
+                    windspeed=(response.list[i*8].wind.speed);
+                    document.getElementById("windspeed" + i).innerHTML = windspeed;
                 }
             } else {
-                for (pas = 1;pas < 6; pas++){
-                    document.getElementById("windspeed" + pas).innerHTML = "";
+                for (let i=0; i<5; i++){
+                    document.getElementById("windspeed" + i).innerHTML = "";
                 }
             }
         }
@@ -217,6 +216,7 @@ function get_Njour() {
                 document.getElementById("table_3jour").style.display = "block";
                 document.getElementById("table_4jour").style.display = "block";
                 document.getElementById("table_5jour").style.display = "block";
+                
             }
         }
     }
