@@ -8,6 +8,7 @@ var base_url = "http://api.openweathermap.org/data/2.5/forecast";
 var city = "Metz";
 var appid = "ff7df6d0fadc12d3893f4cab80f6aee5";
 var units = "metric";
+var language = "fr"
 
 let forcastArray = [];
 
@@ -15,7 +16,7 @@ function get_url() {
     return base_url + "?"
         + "q=" + city + "&"
         + "units=" + units + "&"
-        + "appid=" + appid;
+        + "appid=" + appid + "&lang=" + language;
 }
 
 
@@ -82,7 +83,9 @@ function get_val_default() {
                 icon = response.list[i * 8].weather[0].icon;
                 src = "http://openweathermap.org/img/w/" + icon + ".png";
                 document.getElementById("icon" + i).src = src;
+                document.getElementById("description" + i).innerHTML = response.list[i * 8].weather[0].description;
                 document.getElementById("time" + i).innerHTML = response.list[i * 8].dt_txt;
+
             }
         }
     }
