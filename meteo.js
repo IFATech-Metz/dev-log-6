@@ -9,6 +9,8 @@ var city = "Metz";
 var appid = "ff7df6d0fadc12d3893f4cab80f6aee5";
 var units = "metric";
 
+let forcastArray = [];
+
 function get_url() {
     return base_url + "?"
         + "q=" + city + "&"
@@ -51,7 +53,6 @@ function get_val_default() {
             var response = JSON.parse(this.responseText);
             var temperature;
             var icon;
-            var src;
 
             // Par défaut 1er jour est coché, et seul le table_1_j est affiché
             document.forms["RadioButton"]["1jourRadio"].checked=true;
@@ -64,27 +65,26 @@ function get_val_default() {
             // Par défaut la pression, l'humidité et la vitesse du vent est décochée et les données effacées
             if(document.getElementById("PressureCheck").checked){
                 document.getElementById("PressureCheck").checked=false;}
-                for (let i = 0;i < 5; i++){
-                    document.getElementById("pressure" + i).innerHTML = "";
+                for (let pas = 0;pas < 5; pas++){
+                    document.getElementById("pressure" + pas).innerHTML = "";
                 }
             if(document.getElementById("HumidityCheck").checked){
                 document.getElementById("HumidityCheck").checked=false;}
-                for (let i = 0;i < 5; i++){
-                    document.getElementById("humidity" + i).innerHTML = "";
+                for (let pas = 0;pas < 5; pas++){
+                    document.getElementById("humidity" + pas).innerHTML = "";
                 }
             if(document.getElementById("WindSpeedCheck").checked){
                 document.getElementById("WindSpeedCheck").checked=false;}
-                for (let i = 0;i < 5; i++){
-                    document.getElementById("windspeed" + i).innerHTML = "";
+                for (let pas = 0;pas < 5; pas++){
+                    document.getElementById("windspeed" + pas).innerHTML = "";
                 }
-            // Toutes les températures et les icones sont récupérées, mais seuls les premières sont affichées par défaut
+            
             for (let i = 0;i < 5;i++) {
-                temperature=Math.round(response.list[i*8].main.temp);
+                temperature=Math.round(response.list[i * 8].main.temp);
                 document.getElementById("temperature" + i).innerHTML = temperature;
-                icon = response.list[i*8].weather[0].icon;
+                icon = response.list[i * 8].weather[0].icon;
                 src = "http://openweathermap.org/img/w/" + icon + ".png";
                 document.getElementById("icon" + i).src = src;
-                
             }
             
         }
@@ -93,6 +93,7 @@ function get_val_default() {
     xhr.open("GET", get_url(), true);
     xhr.send();
 }
+
 
 /* ensemble des fonctions récupérant des valeurs supplémentaires : pression, humidité, vitesse du vent */
 
@@ -107,13 +108,14 @@ function get_pressure() {
             var pressure;
 
             if (checkBox.checked == true){
-                for (let i=0; i<5; i++){
-                    pressure=(response.list[i*8].main.pressure);
-                    document.getElementById("pressure" + i).innerHTML = pressure;
+                var pas;
+                for (let pas = 0;pas < 5; pas++){
+                    pressure=(response.list[pas * 8].main.pressure);
+                    document.getElementById("pressure" + pas).innerHTML = pressure;
                 }
             } else {
-                for (let i=0; i<5; i++){
-                    document.getElementById("pressure" + i).innerHTML = "";
+                for (let pas = 0;pas < 5; pas++){
+                    document.getElementById("pressure" + pas).innerHTML = "";
                 }
             }
         }
@@ -133,13 +135,13 @@ function get_humidity() {
             var humidity;
 
             if (checkBox.checked == true){
-                for (let i=0; i<5; i++){
-                    humidity=(response.list[i*8].main.humidity);
-                    document.getElementById("humidity" + i).innerHTML = humidity;
+                for (let pas = 0;pas < 5; pas++){
+                    humidity=(response.list[pas * 8].main.humidity);
+                    document.getElementById("humidity" + pas).innerHTML = humidity;
                 }
             } else {
-                for (let i=0; i<5; i++){
-                    document.getElementById("humidity" + i).innerHTML = "";
+                for (let pas = 0;pas < 5; pas++){
+                    document.getElementById("humidity" + pas).innerHTML = "";
                 }
             }
         }
@@ -159,13 +161,13 @@ function get_windspeed() {
             var windspeed;
 
             if (checkBox.checked == true){
-                for (let i=0; i<5; i++){
-                    windspeed=(response.list[i*8].wind.speed);
-                    document.getElementById("windspeed" + i).innerHTML = windspeed;
+                for (let pas = 0;pas < 5; pas++){
+                    windspeed=(response.list[pas * 8].wind.speed);
+                    document.getElementById("windspeed" + pas).innerHTML = windspeed;
                 }
             } else {
-                for (let i=0; i<5; i++){
-                    document.getElementById("windspeed" + i).innerHTML = "";
+                for (let pas = 0;pas < 5; pas++){
+                    document.getElementById("windspeed" + pas).innerHTML = "";
                 }
             }
         }
