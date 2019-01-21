@@ -22,25 +22,70 @@ function get_url() {
 function init_page() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("url").innerHTML = get_url();
+            document.getElementById("url").innerHTML = get_url();    
+
+            document.getElementById("table_1jour").style.display  = "none";
+            document.getElementById("table_2jour").style.display  = "none";
+            document.getElementById("table_3jour").style.display  = "none";
+            document.getElementById("table_4jour").style.display  = "none";
+            document.getElementById("table_5jour").style.display  = "none";
+
+        }
+    }
+    
+    xhr.open("GET", get_url(), true);
+    xhr.send();
+}
+
+function handleKeyPress(event) {
+    var key = event.key;
+    if(key == "Enter")
+    { get_val_default(); }
+}
+
+function get_val_default() {
+    city = document.getElementById("ville").value;
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
 
             var response = JSON.parse(this.responseText);
             var temperature;
             var icon;
             var src;
-            var pas;
-            for (pas = 1; pas < 6; pas++) {
-                temperature=Math.round(response.list[pas-1].main.temp);
-                document.getElementById("meteo" + pas).innerHTML = temperature;
-                icon = response.list[pas - 1].weather[0].icon;
-                src = "http://openweathermap.org/img/w/" + icon + ".png";
-                switch (pas){
-                    case 1 : document.getElementById("icon1").src = src;
-                    case 2 : document.getElementById("icon2").src = src;
-                    case 3 : document.getElementById("icon3").src = src;
-                    case 4 : document.getElementById("icon4").src = src;
-                    case 5 : document.getElementById("icon5").src = src;
+            var pas; 
+            var jour=1;
+
+            document.forms["RadioButton"]["1jourRadio"].checked=true;
+            document.getElementById("table_1jour").style.display = "block";
+            document.getElementById("table_2jour").style.display  = "none";
+            document.getElementById("table_3jour").style.display  = "none";
+            document.getElementById("table_4jour").style.display  = "none";
+            document.getElementById("table_5jour").style.display  = "none";
+            
+            if(document.getElementById("PressureCheck").checked){
+                document.getElementById("PressureCheck").checked=false;}
+                for (pas = 1;pas < 6; pas++){
+                    document.getElementById("pressure" + pas).innerHTML = "";
                 }
+            if(document.getElementById("HumidityCheck").checked){
+                document.getElementById("HumidityCheck").checked=false;}
+                for (pas = 1;pas < 6; pas++){
+                    document.getElementById("humidity" + pas).innerHTML = "";
+                }
+            if(document.getElementById("WindSpeedCheck").checked){
+                document.getElementById("WindSpeedCheck").checked=false;}
+                for (pas = 1;pas < 6; pas++){
+                    document.getElementById("windspeed" + pas).innerHTML = "";
+                }
+            
+            for (pas = 1;pas <= 41; pas = 8) {
+                temperature=Math.round(response.list[pas-1].main.temp);
+                document.getElementById("temperature" + jour).innerHTML = temperature;
+                icon = response.list[pas-1].weather[0].icon;
+                src = "http://openweathermap.org/img/w/" + icon + ".png";
+                document.getElementById("icon" + jour).src = src;
+                jour++;
+
             }
         }
     }
@@ -51,6 +96,7 @@ function init_page() {
 */
 
 
+<<<<<<< HEAD
 function handleKeyPress(e)
 {
     var key = e.key;
@@ -104,37 +150,88 @@ function getData(ville){
 
 /*function get_temperature() {
     console.log("hello");
+=======
+/* ensemble des fonctions récupérant des valeurs supplémentaires : pression, humidité, vitesse du vent */
+
+function get_pressure() {
+>>>>>>> 0be4ea1026fae8a8187c50ced2b260ff80ee7ff6
     city = document.getElementById("ville").value;
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
-            
-            if(document.getElementById("url_visibility").checked){
-                document.getElementById("url").style.display = "block";
-            }
-            else{
-                document.getElementById("url").style.display = "none";
-            }
-
+           
+            var checkBox = document.getElementById("PressureCheck");
             var response = JSON.parse(this.responseText);
-            var temperature;
-            var src;
-            var pas;
-            for (pas = 1;pas < 6; pas++){
-                temperature=Math.round(response.list[pas-1].main.temp);
-                document.getElementById("meteo" + pas).innerHTML = temperature;
-                icon = response.list[pas - 1].weather[0].icon;
-                src = "http://openweathermap.org/img/w/" + icon + ".png";
-                switch (pas){
-                    case 1 : document.getElementById("icon1").src = src;
-                    case 2 : document.getElementById("icon2").src = src;
-                    case 3 : document.getElementById("icon3").src = src;
-                    case 4 : document.getElementById("icon4").src = src;
-                    case 5 : document.getElementById("icon5").src = src;
+            var pressure;
+
+            if (checkBox.checked == true){
+                var pas;
+                for (pas = 1;pas < 6; pas++){
+                    pressure=(response.list[pas-1].main.pressure);
+                    document.getElementById("pressure" + pas).innerHTML = pressure;
+                }
+            } else {
+                for (pas = 1;pas < 6; pas++){
+                    document.getElementById("pressure" + pas).innerHTML = "";
                 }
             }
         }
     }
+    xhr.open("GET", get_url(), true);
+    xhr.send();
+}
+
+function get_humidity() {
+    city = document.getElementById("ville").value;
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("url").innerHTML = get_url();
+           
+            var checkBox = document.getElementById("HumidityCheck");
+            var response = JSON.parse(this.responseText);
+            var humidity;
+            var pas;
+
+            if (checkBox.checked == true){
+                for (pas = 1;pas < 6; pas++){
+                    humidity=(response.list[pas-1].main.humidity);
+                    document.getElementById("humidity" + pas).innerHTML = humidity;
+                }
+            } else {
+                for (pas = 1;pas < 6; pas++){
+                    document.getElementById("humidity" + pas).innerHTML = "";
+                }
+            }
+        }
+    }
+    xhr.open("GET", get_url(), true);
+    xhr.send();
+}
+
+function get_windspeed() {
+    city = document.getElementById("ville").value;
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("url").innerHTML = get_url();
+           
+            var checkBox = document.getElementById("WindSpeedCheck");
+            var response = JSON.parse(this.responseText);
+            var windspeed;
+            var pas;
+
+            if (checkBox.checked == true){
+                for (pas = 1;pas < 6; pas++){
+                    windspeed=(response.list[pas-1].wind.speed);
+                    document.getElementById("windspeed" + pas).innerHTML = windspeed;
+                }
+            } else {
+                for (pas = 1;pas < 6; pas++){
+                    document.getElementById("windspeed" + pas).innerHTML = "";
+                }
+            }
+        }
+    }
+<<<<<<< HEAD
     
     xhr.open("GET", get_url(), true);
     xhr.send();
@@ -142,10 +239,20 @@ function getData(ville){
 */
 
 /*function get_pressure() {
+=======
+    xhr.open("GET", get_url(), true);
+    xhr.send();
+}
+
+/* la fonction unique qui permet d'afficher les prévisions suivant le nombre de jour que l'on souhaite */
+
+function get_Njour() {
+>>>>>>> 0be4ea1026fae8a8187c50ced2b260ff80ee7ff6
     city = document.getElementById("ville").value;
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("url").innerHTML = get_url();
+<<<<<<< HEAD
             
             /*if(document.getElementById("url_visibility").checked){
                 document.getElementById("url").style.display = "block";
@@ -175,3 +282,47 @@ function getData(ville){
     //xhr.open("GET", get_url(), true);
     //xhr.send();
 //}
+=======
+           
+            if(document.RadioButton.Njour[0].checked){
+                document.getElementById("table_1jour").style.display = "block";
+                document.getElementById("table_2jour").style.display = "none";
+                document.getElementById("table_3jour").style.display = "none";
+                document.getElementById("table_4jour").style.display = "none";
+                document.getElementById("table_5jour").style.display = "none";
+            }
+            if(document.RadioButton.Njour[1].checked){
+                document.getElementById("table_1jour").style.display = "block";
+                document.getElementById("table_2jour").style.display = "block";
+                document.getElementById("table_3jour").style.display = "none";
+                document.getElementById("table_4jour").style.display = "none";
+                document.getElementById("table_5jour").style.display = "none";
+            }
+            if(document.RadioButton.Njour[2].checked){
+                document.getElementById("table_1jour").style.display = "block";
+                document.getElementById("table_2jour").style.display = "block";
+                document.getElementById("table_3jour").style.display = "block";
+                document.getElementById("table_4jour").style.display = "none";
+                document.getElementById("table_5jour").style.display = "none";
+            }
+            if(document.RadioButton.Njour[3].checked){
+                document.getElementById("table_1jour").style.display = "block";
+                document.getElementById("table_2jour").style.display = "block";
+                document.getElementById("table_3jour").style.display = "block";
+                document.getElementById("table_4jour").style.display = "block";
+                document.getElementById("table_5jour").style.display = "none";
+            }
+            if(document.RadioButton.Njour[4].checked){
+                document.getElementById("table_1jour").style.display = "block";
+                document.getElementById("table_2jour").style.display = "block";
+                document.getElementById("table_3jour").style.display = "block";
+                document.getElementById("table_4jour").style.display = "block";
+                document.getElementById("table_5jour").style.display = "block";
+            }
+        }
+    }
+    xhr.open("GET", get_url(), true);
+    xhr.send();
+}
+
+>>>>>>> 0be4ea1026fae8a8187c50ced2b260ff80ee7ff6
