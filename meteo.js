@@ -18,7 +18,7 @@ function get_url() {
         + "appid=" + appid;
 }
 
-/*
+
 function init_page() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -93,7 +93,6 @@ function get_val_default() {
     xhr.open("GET", get_url(), true);
     xhr.send();
 }
-*/
 
 
 /* ensemble des fonctions récupérant des valeurs supplémentaires : pression, humidité, vitesse du vent */
