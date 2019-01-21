@@ -82,6 +82,7 @@ function get_val_default() {
                 icon = response.list[i * 8].weather[0].icon;
                 src = "http://openweathermap.org/img/w/" + icon + ".png";
                 document.getElementById("icon" + i).src = src;
+                document.getElementById("time" + i).innerHTML = response.list[i * 8].dt_txt;
             }
         }
     }
@@ -104,7 +105,6 @@ function get_pressure() {
             var pressure;
 
             if (checkBox.checked == true){
-                var pas;
                 for (let pas = 0;pas < 5; pas++){
                     pressure=(response.list[pas * 8].main.pressure);
                     document.getElementById("pressure" + pas).innerHTML = pressure;
@@ -129,7 +129,6 @@ function get_humidity() {
             var checkBox = document.getElementById("HumidityCheck");
             var response = JSON.parse(this.responseText);
             var humidity;
-            var pas;
 
             if (checkBox.checked == true){
                 for (let pas = 0;pas < 5; pas++){
@@ -156,7 +155,6 @@ function get_windspeed() {
             var checkBox = document.getElementById("WindSpeedCheck");
             var response = JSON.parse(this.responseText);
             var windspeed;
-            var pas;
 
             if (checkBox.checked == true){
                 for (let pas = 0;pas < 5; pas++){
