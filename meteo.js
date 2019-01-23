@@ -188,7 +188,7 @@ function get_Njour() {
             document.getElementById("url").innerHTML = get_url();
            
             if(document.RadioButton.Njour[0].checked){
-                document.getElementById("table_1jour").style.= "block";
+                document.getElementById("table_1jour").style.display = "block";
                 document.getElementById("table_2jour").style.display = "none";
                 document.getElementById("table_3jour").style.display = "none";
                 document.getElementById("table_4jour").style.display = "none";
