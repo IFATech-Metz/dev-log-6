@@ -4,142 +4,139 @@
         <title>Application Web de Météo - Groupe DevLog6</title>
         <script src="meteo.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
     </head>
     <body onload="init_page()">
-        <h1>Prévisions météorologiques sur cinq jours</h1>
+        
+        <section id="presentation">
+        <h1>Prévisions météorologiques</h1>
 
         <p>
-            Nom de la ville :
-            <input type="text" id="ville" value="" onkeypress="handleKeyPress(event)"/><br>
+            <input type="text" id="ville" placeholder="Ville recherchée" onfocus=""; onkeypress="handleKeyPress(event)"/><br>
         </p>
-        <p>
-            Appuyer sur la touche Entrée lance la recherche.
-        </p>
-        <p>
-            Obtenir des informations supplémentaires : 
-        </p>
+        </br>
+        
+        <h2>Obtenir des informations supplémentaires : </h2>
+        
         <p>  
-            Pression <input type="checkbox" id="PressureCheck" onclick="get_pressure();"/> 
-            Humidité <input type="checkbox" id="HumidityCheck" onclick="get_humidity();"/> 
-            Vitesse du vent <input type="checkbox" id="WindSpeedCheck" onclick="get_windspeed();"/>
-       </p>
-       <p>
-            Afficher les prévisions sur : 
+            <label for="PressureCheck">Pression</label> 
+            <label for="HumidityCheck">Humidité</label> 
+            <label for="WindSpeedCheck">Vent</label> 
         </p>
+        <p>
+            <input type="checkbox" class="CheckandRadio" id="PressureCheck" onclick="get_pressure();"/> 
+            <input type="checkbox" class="CheckandRadio" id="HumidityCheck" onclick="get_humidity();"/> 
+            <input type="checkbox" class="CheckandRadio" id="WindSpeedCheck" onclick="get_windspeed();"/>
+        </p>
+        
+        <h2>Afficher les prévisions sur : </h2>
+        
         <p>
         <form name="RadioButton"> 
-            1 jour <input type="radio" id="1jourRadio" name=Njour value="1jour" onclick="get_Njour();" checked/>
-            2 jours <input type="radio" id="2jourRadio" name=Njour value="2jour" onclick="get_Njour();"/> 
-            3 jours <input type="radio" id="3jourRadio" name=Njour value="3jour" onclick="get_Njour();"/> 
-            4 jours <input type="radio" id="4jourRadio" name=Njour value="4jour" onclick="get_Njour();"/> 
-            5 jours <input type="radio" id="5jourRadio" name=Njour value="5jour" onclick="get_Njour();"/>
+            <p>
+                <label for="1jourRadio">1 jour</label> 
+                <label for="2jourRadio">2 jours</label>
+                <label for="3jourRadio">3 jours</label> 
+                <label for="4jourRadio">4 jours</label>
+                <label for="5jourRadio">5 jours</label> 
+            </p>
+            <p>
+                <input type="radio" class="CheckandRadio" id="1jourRadio" name= Njour value="1jour" onclick="get_Njour();"/>
+                <input type="radio" class="CheckandRadio" id="2jourRadio" name= Njour value="2jour" onclick="get_Njour();"/>
+                <input type="radio" class="CheckandRadio" id="3jourRadio" name= Njour value="3jour" onclick="get_Njour();"/> 
+                <input type="radio" class="CheckandRadio" id="4jourRadio" name= Njour value="4jour" onclick="get_Njour();"/> 
+                <input type="radio" class="CheckandRadio" id="5jourRadio" name= Njour value="5jour" onclick="get_Njour();"/>
+            </p>
         </form>
         </p>
+        </section>
+        </br>
 
         <!-- Ensemble des tableaux présentant les résultats -->
 
+        <section id="affichage">
             <div class=table>
             <table id="table_1jour">
                 <tr>
-                    <th class="titre" colspan="2">Aujourd'hui<br/><span class="time" id="time0"></span></th>
+                    <th class="titre" colspan="2">Aujourd'hui<br/><span class="time" id="1_time"></span></th>
                 </tr>
                 <tr>
-                    <td rowspan="4"><img id="icon0" src=""><br/><span class="description" id="description0"></span></td>
-                    <td>Température : <span id=temperature0></span> °C</td>
-                </tr>
-                <tr>
-                    <td>Pression : <span id=pressure0></span> hPa</td>
-                </tr>
-                <tr>
-                    <td>Humidité : <span id=humidity0></span> %</td>
-                </tr>
-                <tr>
-                    <td>Vitesse du vent : <span id=windspeed0></span> m/s</td>
+                    <td ><img id="1_icon" src=""><br/><span id="1_description"></span></td>
+                    <td>
+                        <div id=1_temperature></div>
+                        <div id=1_pressure></div>
+                        <div id=1_humidity></div>
+                        <div id=1_windspeed></div>
+                    </td>
                 </tr>
             </table>
             </div>
 
             <div class=table>
             <table id="table_2jour">
-                <tr>
-                    <th class="titre" colspan="2">Demain<br/><span class="time" id="time1"></span></th>
-                </tr>
-                <tr>
-                    <td rowspan="4"><img id="icon1" src=""><br/><span class="description" id="description1"></span></td>
-                    <td>Température : <span id=temperature1></span> °C</td>
-                </tr>
-                <tr>
-                    <td>Pression : <span id=pressure1></span> hPa</td>
-                </tr>
-                <tr>
-                    <td>Humidité : <span id=humidity1></span> %</td>
-                </tr>
-                <tr>
-                    <td>Vitesse du vent : <span id=windspeed1></span> km/h</td>
-                </tr>
+                    <tr>
+                        <th class="titre" colspan="2">Demain<br/><span class="time" id="2_time"></span></th>
+                    </tr>
+                    <tr>
+                        <td><img id="2_icon" src=""><br/><span id="2_description"></span></td>
+                        <td>
+                            <div id=2_temperature></div>
+                            <div id=2_pressure></div>
+                            <div id=2_humidity></div>
+                            <div id=2_windspeed></div>
+                        </td>
+                    </tr>
             </table>
             </div>
 
             <div class=table>
             <table id="table_3jour">
-                <tr>
-                    <th class="titre" colspan="2">Dans deux jours<br/><span class="time" id="time2"></span></th>
-                </tr>
-                <tr>
-                    <td rowspan="4"><img id="icon2" src=""><br/><span class="description" id="description2"></span></td>
-                    <td>Température : <span id=temperature2></span> °C</td>
-                </tr>
-                <tr>
-                    <td>Pression : <span id=pressure2></span> hPa</td>
-                </tr>
-                <tr>
-                    <td>Humidité : <span id=humidity2></span> %</td>
-                </tr>
-                <tr>
-                    <td>Vitesse du vent : <span id=windspeed2></span> km/h</td>
-                </tr>
+                    <tr>
+                            <th class="titre" colspan="2">Dans 2 jours<br/><span class="time" id="3_time"></span></th>
+                        </tr>
+                        <tr>
+                            <td><img id="3_icon" src=""><br/><span id="3_description"></span></td>
+                            <td>
+                                <div id=3_temperature></div>
+                                <div id=3_pressure></div>
+                                <div id=3_humidity></div>
+                                <div id=3_windspeed></div>
+                            </td>
+                        </tr>
             </table>
             </div>
 
             <div class=table>
             <table id="table_4jour">
-                <tr>
-                    <th class="titre" colspan="2">Dans trois jours<br/><span class="time" id="time3"></span></th>
-                </tr>
-                <tr>
-                    <td rowspan="4"><img id="icon3" src=""><br/><span class="description" id="description3"></span></td>
-                    <td>Température : <span id=temperature3></span> °C</td>
-                </tr>
-                <tr>
-                    <td>Pression : <span id=pressure3></span> hPa</td>
-                </tr>
-                <tr>
-                    <td>Humidité : <span id=humidity3></span> %</td>
-                </tr>
-                <tr>
-                    <td>Vitesse du vent : <span id=windspeed3></span> km/h</td>
-                </tr>
+                    <tr>
+                            <th class="titre" colspan="2">Dans 3 jours<br/><span class="time" id="4_time"></span></th>
+                        </tr>
+                        <tr>
+                            <td><img id="4_icon" src=""><br/><span id="4_description"></span></td>
+                            <td>
+                                <div id=4_temperature></div>
+                                <div id=4_pressure></div>
+                                <div id=4_humidity></div>
+                                <div id=4_windspeed></div>
+                            </td>
+                        </tr>
             </table>
             </div>
 
             <div class=table>
             <table id="table_5jour">
-                <tr>
-                    <th class="titre" colspan="2">Dans quatre jours<br/><span class="time" id="time4"></span></th>
-                </tr>
-                <tr>
-                    <td rowspan="4"><img id="icon4" src=""><br/><span class="description" id="description4"></span></td>
-                    <td>Température : <span id=temperature4></span> °C</td>
-                </tr>
-                <tr>
-                    <td>Pression : <span id=pressure4></span> hPa</td>
-                </tr>
-                <tr>
-                    <td>Humidité : <span id=humidity4></span> %</td>
-                </tr>
-                <tr>
-                    <td>Vitesse du vent : <span id=windspeed4></span> km/h</td>
-                </tr>
+                    <tr>
+                            <th class="titre" colspan="2">Dans 4 jours<br/><span class="time" id="5_time"></span></th>
+                        </tr>
+                        <tr>
+                            <td><img id="5_icon" src=""><br/><span id="5_description"></span></td>
+                            <td>
+                                    <div id=5_temperature></div>
+                                    <div id=5_pressure></div>
+                                    <div id=5_humidity></div>
+                                    <div id=5_windspeed></div>
+                            </td>
+                        </tr>
             </table>
             </div>
         </section>
