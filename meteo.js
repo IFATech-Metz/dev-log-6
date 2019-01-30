@@ -17,6 +17,9 @@ function get_url() {
         + "appid=" + appid + "&lang=" + language;
 }
 
+function error() {
+    document.getElementById("error").style.display  = "block";
+}
 
 function init_page() {
     xhr.onreadystatechange = function() {
@@ -27,6 +30,7 @@ function init_page() {
             document.getElementById("table_3jour").style.display  = "none";
             document.getElementById("table_4jour").style.display  = "none";
             document.getElementById("table_5jour").style.display  = "none";
+            document.getElementById("error").style.display  = "none";
 
         }
     }
@@ -44,6 +48,7 @@ function handleKeyPress(event) {
 function get_val_default() {
     city = document.getElementById("ville").value;
     xhr.onreadystatechange = function() {
+
         if (this.readyState == 4 && this.status == 200) {
 
             var response = JSON.parse(this.responseText);
@@ -52,7 +57,7 @@ function get_val_default() {
             var src; 
             console.log(response);
 
-            document.forms["RadioButton"]["1jourRadio"].checked=true;
+            document.forms["RadioButton"]["U1jourRadio"].checked=true;
             document.getElementById("table_1jour").style.display = "block";
             document.getElementById("table_2jour").style.display  = "none";
             document.getElementById("table_3jour").style.display  = "none";
@@ -84,12 +89,14 @@ function get_val_default() {
                 document.getElementById(jour + "_description").innerHTML = response.list[(jour-1) * 8].weather[0].description;
                 document.getElementById(jour + "_time").innerHTML = response.list[(jour-1) * 8].dt_txt;
 
-            }
+            } 
+        
         }
     }
-    
+   
     xhr.open("GET", get_url(), true);
     xhr.send();
+    
 }
 
 

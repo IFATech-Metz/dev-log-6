@@ -15,12 +15,13 @@
             <input type="text" id="ville" placeholder="Ville recherchée" onfocus=""; onkeypress="handleKeyPress(event)"/><br>
         </p>
         </br>
+        <div id="error">La ville que vous cherchez n'est pas valide (Nom en anglais requis)</div>
         
         <h2>Obtenir des informations supplémentaires : </h2>
         
         <p>  
             <label for="PressureCheck">Pression</label> 
-            <label for="HumidityCheck">Humidité</label> 
+            <label for="HumidityCheck" id= "Label_HumidityCheck">Humidité</label> 
             <label for="WindSpeedCheck">Vent</label> 
         </p>
         <p>
@@ -35,17 +36,17 @@
         <form name="RadioButton"> 
             <p>
                 <label for="1jourRadio">1 jour</label> 
-                <label for="2jourRadio">2 jours</label>
+                <label for="2jourRadio" id= "Label_2jourRadio">2 jours</label>
                 <label for="3jourRadio">3 jours</label> 
-                <label for="4jourRadio">4 jours</label>
+                <label for="4jourRadio" id= "Label_4jourRadio">4 jours</label>
                 <label for="5jourRadio">5 jours</label> 
             </p>
             <p>
-                <input type="radio" class="CheckandRadio" id="1jourRadio" name= Njour value="1jour" onclick="get_Njour();"/>
-                <input type="radio" class="CheckandRadio" id="2jourRadio" name= Njour value="2jour" onclick="get_Njour();"/>
-                <input type="radio" class="CheckandRadio" id="3jourRadio" name= Njour value="3jour" onclick="get_Njour();"/> 
-                <input type="radio" class="CheckandRadio" id="4jourRadio" name= Njour value="4jour" onclick="get_Njour();"/> 
-                <input type="radio" class="CheckandRadio" id="5jourRadio" name= Njour value="5jour" onclick="get_Njour();"/>
+                <input type="radio" class="CheckandRadio" id="U1jourRadio" name= Njour value="1jour" onclick="get_Njour();"/>
+                <input type="radio" class="CheckandRadio" id="D2jourRadio" name= Njour value="2jour" onclick="get_Njour();"/>
+                <input type="radio" class="CheckandRadio" id="T3jourRadio" name= Njour value="3jour" onclick="get_Njour();"/> 
+                <input type="radio" class="CheckandRadio" id="Q4jourRadio" name= Njour value="4jour" onclick="get_Njour();"/> 
+                <input type="radio" class="CheckandRadio" id="C5jourRadio" name= Njour value="5jour" onclick="get_Njour();"/>
             </p>
         </form>
         </p>
