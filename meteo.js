@@ -9,6 +9,7 @@ var city = "Metz";
 var appid = "ff7df6d0fadc12d3893f4cab80f6aee5";
 var units = "metric";
 var language = "fr";
+var autorisation;
 
 function get_url() {
     return base_url + "?"
@@ -39,7 +40,13 @@ function init_page() {
 function handleKeyPress(event) {
     var key = event.key;
     if(key == "Enter")
-    { get_val_default(); }
+    { get_val_default();
+      autorisation = 1; 
+    }
+}
+
+function autorisation () {
+    autorisation = 0;
 }
 
 function get_val_default() {
@@ -185,35 +192,35 @@ function get_Njour() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            
-            if(document.RadioButton.Njour[0].checked){
+            if(document.RadioButton.Njour[0].checked && autorisation == 1){
                 document.getElementById("table_1jour").style.display = "block";
                 document.getElementById("table_2jour").style.display = "none";
                 document.getElementById("table_3jour").style.display = "none";
                 document.getElementById("table_4jour").style.display = "none";
                 document.getElementById("table_5jour").style.display = "none";
             }
-            if(document.RadioButton.Njour[1].checked){
+            if(document.RadioButton.Njour[1].checked && autorisation == 1){
                 document.getElementById("table_1jour").style.display = "block";
                 document.getElementById("table_2jour").style.display = "block";
                 document.getElementById("table_3jour").style.display = "none";
                 document.getElementById("table_4jour").style.display = "none";
                 document.getElementById("table_5jour").style.display = "none";
             }
-            if(document.RadioButton.Njour[2].checked){
+            if(document.RadioButton.Njour[2].checked && autorisation == 1){
                 document.getElementById("table_1jour").style.display = "block";
                 document.getElementById("table_2jour").style.display = "block";
                 document.getElementById("table_3jour").style.display = "block";
                 document.getElementById("table_4jour").style.display = "none";
                 document.getElementById("table_5jour").style.display = "none";
             }
-            if(document.RadioButton.Njour[3].checked){
+            if(document.RadioButton.Njour[3].checked && autorisation == 1){
                 document.getElementById("table_1jour").style.display = "block";
                 document.getElementById("table_2jour").style.display = "block";
                 document.getElementById("table_3jour").style.display = "block";
                 document.getElementById("table_4jour").style.display = "block";
                 document.getElementById("table_5jour").style.display = "none";
             }
-            if(document.RadioButton.Njour[4].checked){
+            if(document.RadioButton.Njour[4].checked && autorisation == 1){
                 document.getElementById("table_1jour").style.display = "block";
                 document.getElementById("table_2jour").style.display = "block";
                 document.getElementById("table_3jour").style.display = "block";
