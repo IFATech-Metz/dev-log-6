@@ -17,9 +17,6 @@ function get_url() {
         + "appid=" + appid + "&lang=" + language;
 }
 
-function error() {
-    document.getElementById("error").style.display  = "block";
-}
 
 function init_page() {
     xhr.onreadystatechange = function() {
@@ -63,6 +60,7 @@ function get_val_default() {
             document.getElementById("table_3jour").style.display  = "none";
             document.getElementById("table_4jour").style.display  = "none";
             document.getElementById("table_5jour").style.display  = "none";
+            document.getElementById("error").style.display  = "none";
             
             if(document.getElementById("PressureCheck").checked){
                 document.getElementById("PressureCheck").checked=false;}
@@ -91,6 +89,9 @@ function get_val_default() {
 
             } 
         
+        }
+        else {
+            document.getElementById("error").style.display  = "block";
         }
     }
    

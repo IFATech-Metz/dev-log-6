@@ -59,6 +59,7 @@ body {
 #ville {
     border: 2px solid rgb(200, 200, 200);
     text-align:center;
+    width: 300px;
 }
 
 #error {
